@@ -32,10 +32,21 @@ public class User {
 	
 	@NotNull
 	@OneToOne
-	@JoinColumn(name="Account_Details")
+	@JoinColumn(name = "Account_Details_ID")
 	private Account account;
 	
+	@OneToOne
+	@JoinColumn(name = "Address_id")
 	private Address address;
 
-	
+	public User(@NotBlank(message = "Name can not be null or empty.") String name,
+			@Email(message = "Provide email in valid format.") String email, @NotBlank String phone,
+			@NotNull Account account, Address address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.account = account;
+		this.address = address;
+	}
 }
