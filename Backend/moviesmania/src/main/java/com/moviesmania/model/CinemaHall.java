@@ -14,6 +14,8 @@ public class CinemaHall {
 	
 	private Show show;
 	
+	
+	
 	@ManyToOne
 	private Cinema cinema;
 }

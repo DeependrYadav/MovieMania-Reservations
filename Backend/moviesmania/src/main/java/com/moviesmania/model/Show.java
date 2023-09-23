@@ -29,4 +29,6 @@ public class Show {
 	
 	@OneToMany(mappedBy = "showList",cascade = CascadeType.ALL)
 	private Movie movie;
+	
+	
 }
