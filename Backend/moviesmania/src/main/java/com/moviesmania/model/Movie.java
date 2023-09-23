@@ -1,33 +1,38 @@
 package com.moviesmania.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Entity
 @Data
-public class Booking {
+public class Movie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer bookingNumber;
+	private Integer movieId;
 	
-	private Integer numberOfSeats;
+	private String title;
 	
-	private LocalDateTime bookingTime = LocalDateTime.now();
+	private String description;
 	
-	private BookingStatus bookingStatus;
+	private Integer durationInMins;
+	
+	private String language;
+	
+	private LocalDate releaseDate;
+	
+	private String country;
+	
+	private String genre;
 	
 	@ManyToOne
-	private Show show;
-
-	@OneToOne
-	private Payment payment;
+	private List<Show> showsList;
 	
 }
