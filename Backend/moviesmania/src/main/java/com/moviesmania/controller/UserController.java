@@ -26,9 +26,10 @@ public class UserController {
 	
 	
 	
+	
 	@PostMapping("/user")
 	public ResponseEntity<User> addUser(@RequestBody @Valid User user){
-		user.getAccount().setPassword(passwordEncoder.encode(user.getAccount().getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return new ResponseEntity<User>(us.addUser(user),HttpStatus.CREATED);
 	}
 	

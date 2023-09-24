@@ -1,6 +1,8 @@
 package com.moviesmania.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,10 +32,17 @@ public class User {
 	@NotBlank
 	private String phone;
 	
-	@NotNull
-	@OneToOne
-	@JoinColumn(name = "Account_Details_ID")
-	private Account account;
+	@NotBlank(message = "Please provide the password")
+	@Size(min = 8,message = "Password size more then 8 Character")
+	private String password;
+	
+	@NotBlank
+	@Enumerated(EnumType.STRING)
+	private AccountStatus status = AccountStatus.ACTIVE;
+	
+	@NotBlank
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	@OneToOne
 	@JoinColumn(name = "Address_id")
@@ -41,12 +50,18 @@ public class User {
 
 	public User(@NotBlank(message = "Name can not be null or empty.") String name,
 			@Email(message = "Provide email in valid format.") String email, @NotBlank String phone,
-			@NotNull Account account, Address address) {
+			@NotBlank(message = "Please provide the password") @Size(min = 8, message = "Password size more then 8 Character") String password,
+			@NotBlank AccountStatus status, @NotBlank Role role, Address address) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
-		this.account = account;
+		this.password = password;
+		this.status = status;
+		this.role = role;
 		this.address = address;
 	}
+
+	
+	
 }
