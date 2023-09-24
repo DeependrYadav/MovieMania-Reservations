@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moviesmania.exception.MoviesManiaException;
 import com.moviesmania.model.User;
-import com.moviesmania.repository.UserRepository;
+import com.moviesmania.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -23,17 +22,19 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private UserRepository ur;
+	private UserService us;
+	
+	
 	
 	@PostMapping("/user")
 	public ResponseEntity<User> addUser(@RequestBody @Valid User user){
 		user.getAccount().setPassword(passwordEncoder.encode(user.getAccount().getPassword()));
-		return new ResponseEntity<User>(user,HttpStatus.CREATED);
+		return new ResponseEntity<User>(us.addUser(user),HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/signin")
 	public ResponseEntity<String> signin(Authentication auth){
-		User user = ur.findByEmail(auth.getName()).orElseThrow(() -> new MoviesManiaException("Invalid email"));
+		User user = us.findByEmail(auth.getName());
 		return new ResponseEntity<String>(user.getName()+"successfully login",HttpStatus.CREATED);
 	}
 }
