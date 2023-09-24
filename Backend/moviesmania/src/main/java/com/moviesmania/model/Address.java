@@ -1,21 +1,14 @@
 package com.moviesmania.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 public class Address {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ID;
 	private String streetAddress;
 	private String city;
 	private String state;

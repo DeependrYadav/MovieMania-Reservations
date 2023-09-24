@@ -24,9 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
-	
-	
-	
 	@PostMapping("/user")
 	public ResponseEntity<User> addUser(@RequestBody @Valid User user){
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
