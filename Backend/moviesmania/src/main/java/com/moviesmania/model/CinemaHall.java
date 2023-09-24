@@ -37,7 +37,6 @@ public class CinemaHall {
 	private MovieShow show;
 	
 	@ElementCollection
-//	@Embedded
 	private List<CinemaHallSeat> hallSeats = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -51,7 +50,24 @@ public class CinemaHall {
 		this.seatsPerColumn = seatsPerColumn;
 		this.show = show;
 		this.cinema = cinema;
+		fillHallSeatsDetails(seatsPerRow,seatsPerColumn);
 	}
 	
-	
+	private void fillHallSeatsDetails(Integer seatsPerRow, Integer seatsPerColumn) {
+		
+		for(int i = 0; i < seatsPerRow; i++) {
+			for(int j = 0; j < seatsPerColumn; j++) {
+				if(i <= seatsPerColumn/3) {
+					hallSeats.add(new CinemaHallSeat("S"+i+j, false,130.00,SeatType.Regular));
+				}else if(i <= seatsPerColumn/3*2) {
+					hallSeats.add(new CinemaHallSeat("S"+i+j, false,150.00,SeatType.Premium));					
+				}else if(i < seatsPerColumn && j < seatsPerColumn/2) {
+					hallSeats.add(new CinemaHallSeat("S"+i+j, false,200.00,SeatType.Left_Balconey));					
+				}else if(i < seatsPerColumn && j > seatsPerColumn/2) {
+					hallSeats.add(new CinemaHallSeat("S"+i+j, false,200.00,SeatType.Right_Balconey));					
+				}
+			}
+		}
+		
+	}
 }
