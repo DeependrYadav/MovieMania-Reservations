@@ -29,4 +29,11 @@ public class Cinema {
 	
 	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
 	private List<CinemaHall> cinemaHallList = new ArrayList<>();
+
+	public Cinema(String cinemaName, City location, List<CinemaHall> cinemaHallList) {
+		super();
+		this.cinemaName = cinemaName;
+		this.location = location;
+		this.cinemaHallList = cinemaHallList;
+	}
 }

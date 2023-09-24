@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Address {
 
@@ -23,5 +22,12 @@ public class Address {
 	private String zipCode;
 	private String country;
 	
-	
+	public Address(String streetAddress, String city, String state, String zipCode, String country) {
+		super();
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.country = country;
+	}
 }
