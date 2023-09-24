@@ -52,7 +52,7 @@ public class Config {
 		.authorizeHttpRequests(auth ->{
 			
 			auth
-//			.requestMatchers(HttpMethod.POST,"/customers").permitAll()
+			.requestMatchers(HttpMethod.POST,"/user").permitAll()
 //			.requestMatchers(HttpMethod.GET,"/deliveryPartners","/deliveryPartners_by_page/{pageNumber}/{recordsPerPage}",
 //					"/deliveryPartners_by_sorting/{field}/{direction}").hasRole("ADMIN")
 //			.requestMatchers(HttpMethod.POST,"/deliveryPartners","/resturants").hasRole("ADMIN")

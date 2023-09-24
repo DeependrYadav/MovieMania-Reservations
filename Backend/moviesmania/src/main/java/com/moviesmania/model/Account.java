@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Account {
 
 	@Id
@@ -25,10 +24,18 @@ public class Account {
 	
 	@NotBlank
 	@Enumerated(EnumType.STRING)
-	private AccountStatus status;
+	private AccountStatus status = AccountStatus.ACTIVE;
 	
 	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
+
+	public Account(String email,
+			@NotBlank(message = "Please provide the password") @Size(min = 8, message = "Password size more then 8 Character") String password,
+			@NotBlank Role role) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
 }
