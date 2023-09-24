@@ -24,7 +24,7 @@ public class City {
 	@NotBlank(message = "Please privide state name.")
 	private String state;
 	
-	@OneToMany(mappedBy = "cinema")
+	@OneToMany(mappedBy = "location")
 	private List<Cinema> cinemaList = new ArrayList<>();
 
 	public City(String zipCode, @NotBlank(message = "Please privide city name.") String cityName,

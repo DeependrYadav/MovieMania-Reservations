@@ -2,7 +2,9 @@ package com.moviesmania.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import jakarta.persistence.CascadeType;
+//
+//import jakarta.persistence.CascadeType;
+//import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Show {
+public class MovieShow {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,10 +32,10 @@ public class Show {
 	@NotBlank(message = "Provide show Ending time.")
 	private LocalTime endTime;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Movie movie;
 
-	public Show(@NotBlank(message = "Provide show Date.") LocalDate date,
+	public MovieShow(@NotBlank(message = "Provide show Date.") LocalDate date,
 			@NotBlank(message = "Provide show Starting time.") LocalTime startTime,
 			@NotBlank(message = "Provide show Ending time.") LocalTime endTime, Movie movie) {
 		super();

@@ -1,8 +1,10 @@
 package com.moviesmania.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,16 +33,17 @@ public class CinemaHall {
 	private Integer seatsPerColumn;
 	
 	@NotNull(message = "Provide show details.")
-	private Show show;
+	@ManyToOne
+	private MovieShow show;
 	
 	@ElementCollection
-	@Embedded
-	private CinemaHallSeat[][] hallSeats = new CinemaHallSeat[seatsPerRow][seatsPerColumn];
+//	@Embedded
+	private List<CinemaHallSeat> hallSeats = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
 
-	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn, Show show,
+	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn, MovieShow show,
 			Cinema cinema) {
 		super();
 		this.totalSeats = totalSeats;
