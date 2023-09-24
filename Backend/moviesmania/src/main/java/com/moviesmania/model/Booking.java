@@ -26,12 +26,12 @@ public class Booking {
 	private BookingStatus bookingStatus;
 	
 	@OneToOne
-	private Show show;
+	private MovieShow show;
 
 	@OneToOne
 	private Payment payment;
 
-	public Booking(Integer numberOfSeats, LocalDateTime bookingTime, BookingStatus bookingStatus, Show show,
+	public Booking(Integer numberOfSeats, LocalDateTime bookingTime, BookingStatus bookingStatus, MovieShow show,
 			Payment payment) {
 		super();
 		this.numberOfSeats = numberOfSeats;

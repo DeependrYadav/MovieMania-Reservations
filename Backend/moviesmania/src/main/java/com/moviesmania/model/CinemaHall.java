@@ -1,7 +1,10 @@
 package com.moviesmania.model;
 
-import io.micrometer.common.lang.NonNull;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,21 +32,24 @@ public class CinemaHall {
 	@NotNull(message = "Provide total seats per column.")
 	private Integer seatsPerColumn;
 	
-	private Show show;
+	@NotNull(message = "Provide show details.")
+	@ManyToOne
+	private MovieShow show;
 	
-	private Integer[][] hallSeats = new Integer[seatsPerRow][seatsPerColumn];
+	@ElementCollection
+//	@Embedded
+	private List<CinemaHallSeat> hallSeats = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
 
-	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn, Show show, Integer[][] hallSeats,
+	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn, MovieShow show,
 			Cinema cinema) {
 		super();
 		this.totalSeats = totalSeats;
 		this.seatsPerRow = seatsPerRow;
 		this.seatsPerColumn = seatsPerColumn;
 		this.show = show;
-		this.hallSeats = hallSeats;
 		this.cinema = cinema;
 	}
 	
