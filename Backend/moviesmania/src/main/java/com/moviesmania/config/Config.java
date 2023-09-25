@@ -24,8 +24,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @EnableWebSecurity
 public class Config {
 
-	@Bean
-	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 //		Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>
 //		authorizeHttpRequestsCustomizer = a -> a.requestMatchers(HttpMethod.POST,"/customers").permitAll().anyRequest().authenticated();
 		
@@ -55,7 +55,7 @@ public class Config {
 			.requestMatchers(HttpMethod.POST,"/user").permitAll()
 //			.requestMatchers(HttpMethod.GET,"/deliveryPartners","/deliveryPartners_by_page/{pageNumber}/{recordsPerPage}",
 //					"/deliveryPartners_by_sorting/{field}/{direction}").hasRole("ADMIN")
-//			.requestMatchers(HttpMethod.POST,"/deliveryPartners","/resturants").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.POST,"/addmovie").hasRole("ADMIN")
 //			.requestMatchers(HttpMethod.PUT,"/orders/{orderId}/{deliveryPartnerId}").hasRole("ADMIN")
 			.anyRequest()
 			.authenticated();
@@ -71,9 +71,9 @@ public class Config {
 		
 		return http.build();
 	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 }
