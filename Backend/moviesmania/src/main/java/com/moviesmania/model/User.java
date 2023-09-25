@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +36,11 @@ public class User {
 	@Size(min = 8,message = "Password size more then 8 Character")
 	private String password;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private AccountStatus status = AccountStatus.ACTIVE;
 	
-	@NotBlank
+	@NotNull(message = "Provide user Role")
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	

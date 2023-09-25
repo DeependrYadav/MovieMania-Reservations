@@ -1,0 +1,14 @@
+{
+    "name":"Naruto",
+    "email":"naruto@gmail.com",
+    "phone":"123456789",
+    "password":"naruto1234",
+    "role":"Admin",
+    "address":{
+        "streetAddress":"Hokage_Office",
+        "city":"Leaf_village",
+        "state":"Leaf_land",
+        "zipCode":"12345",
+        "country":"Land_of_Fire"
+    }
+}
