@@ -61,7 +61,4 @@ public class Movie {
 		this.releaseDate = releaseDate;
 		this.genre = genre;
 	}
-	
-	
-	
 }

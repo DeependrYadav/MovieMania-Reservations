@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,9 @@ public class CinemaHall {
 	private Integer seatsPerColumn;
 	
 	@NotNull(message = "Provide show details.")
-	@ManyToOne
-	private MovieShow show;
+	
+	@OneToMany(mappedBy = "cinemaHall")
+	private List<MovieShow> show = new ArrayList<>();
 	
 	@ElementCollection
 	private List<CinemaHallSeat> hallSeats = new ArrayList<>();
@@ -42,13 +44,12 @@ public class CinemaHall {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
 
-	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn, MovieShow show,
+	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn,
 			Cinema cinema) {
 		super();
 		this.totalSeats = totalSeats;
 		this.seatsPerRow = seatsPerRow;
 		this.seatsPerColumn = seatsPerColumn;
-		this.show = show;
 		this.cinema = cinema;
 		fillHallSeatsDetails(seatsPerRow,seatsPerColumn);
 	}
