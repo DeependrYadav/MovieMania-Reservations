@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,19 +24,20 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer movieId;
+	
 	@NotBlank(message = "Please provide movie title.")
 	private String title;
 	
 	@NotBlank(message = "Please provide movie descritpion.")
 	private String description;
 	
-	@NotBlank(message = "Please provide movie Duration.")
+	@NotNull(message = "Please provide movie Duration.")
 	private Integer durationInMins;
 	
 	@NotBlank(message = "Please provide movie Language.")
 	private String language;
 	
-	@NotBlank(message = "Please provide movie Release date.")
+	@NotNull(message = "Please provide movie Release date.")
 	private LocalDate releaseDate;
 	
 	@NotBlank(message = "Please provide movie Genre.")

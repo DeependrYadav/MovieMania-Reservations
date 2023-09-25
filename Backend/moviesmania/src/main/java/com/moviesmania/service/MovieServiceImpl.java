@@ -20,4 +20,19 @@ public class MovieServiceImpl implements MovieService {
 		return mr.save(movie);
 	}
 
+	@Override
+	public Movie mordifyMovie(Integer movieId, Movie movie) {
+		if(movie == null)throw new MoviesManiaException("Movie is null");
+		Movie updateMovie = mr.findById(movieId).orElseThrow(() -> new MoviesManiaException("Invalid movie ID."));
+		
+		if(movie.getDescription()!=null)updateMovie.setDescription(movie.getDescription());
+		if(movie.getDurationInMins()!=null)updateMovie.setDurationInMins(movie.getDurationInMins());
+		if(movie.getGenre()!=null)updateMovie.setGenre(movie.getGenre());
+		if(movie.getLanguage()!=null)updateMovie.setLanguage(movie.getLanguage());
+		if(movie.getReleaseDate()!=null)updateMovie.setReleaseDate(movie.getReleaseDate());
+		if(movie.getTitle()!=null)updateMovie.setTitle(movie.getTitle());
+		
+		return updateMovie;
+	}
+
 }
