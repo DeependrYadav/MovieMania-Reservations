@@ -30,10 +30,9 @@ public class Cinema {
 	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
 	private List<CinemaHall> cinemaHallList = new ArrayList<>();
 
-	public Cinema(String cinemaName, City location, List<CinemaHall> cinemaHallList) {
+	public Cinema(String cinemaName, City location) {
 		super();
 		this.cinemaName = cinemaName;
 		this.location = location;
-		this.cinemaHallList = cinemaHallList;
 	}
 }
