@@ -60,7 +60,4 @@ public class User {
 		this.role = role;
 		this.address = address;
 	}
-
-	
-	
 }
