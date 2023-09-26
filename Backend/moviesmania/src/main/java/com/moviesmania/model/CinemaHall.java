@@ -33,8 +33,6 @@ public class CinemaHall {
 	@NotNull(message = "Provide total seats per column.")
 	private Integer seatsPerColumn;
 	
-	@NotNull(message = "Provide show details.")
-	
 	@OneToMany(mappedBy = "cinemaHall")
 	private List<MovieShow> show = new ArrayList<>();
 	
