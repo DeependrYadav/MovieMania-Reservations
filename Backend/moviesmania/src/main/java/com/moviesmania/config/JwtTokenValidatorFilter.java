@@ -27,8 +27,9 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 
 		String jwt= request.getHeader(SecurityConstants.JWT_HEADER);
-
+		System.out.println("Before JWT");
 		if(jwt != null) {
+			System.out.println("After JWT");
 			
 			try {
 
@@ -39,10 +40,11 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter{
 				SecretKey key= Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
 				
 				Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
-				
+				System.out.println(claims.get("username"));
 				String username= String.valueOf(claims.get("username"));
 				
 				String authorities= (String)claims.get("authorities");	
+				System.out.println(claims.get("authorities"));
 				
 				Authentication auth = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
 				
@@ -53,13 +55,13 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter{
 			}
 						
 		}
-		
+		System.out.println("Else excuted");
 		filterChain.doFilter(request, response);
 	}
 	
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		return request.getServletPath().equals("/signin");
+		return request.getServletPath().equals("/signIn");
 	}
 
 }

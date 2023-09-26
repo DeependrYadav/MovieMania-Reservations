@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,6 +26,7 @@ public class Cinema {
 	private String cinemaName;
 	
 	@Embedded
+	@NotNull(message = "Provide cinema address.")
 	private Address address;
 	
 	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)

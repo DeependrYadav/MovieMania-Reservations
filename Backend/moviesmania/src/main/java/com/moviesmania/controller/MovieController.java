@@ -22,6 +22,7 @@ public class MovieController {
 	
 	@PostMapping("/addmovie")
 	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie){
+		System.out.println("Addmovie");
 		return new ResponseEntity<Movie>(ms.addMovie(movie), HttpStatus.CREATED);
 	}
 	

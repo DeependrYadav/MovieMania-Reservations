@@ -53,9 +53,7 @@ public class Config {
 			
 			auth
 			.requestMatchers(HttpMethod.POST,"/user").permitAll()
-//			.requestMatchers(HttpMethod.GET,"/deliveryPartners","/deliveryPartners_by_page/{pageNumber}/{recordsPerPage}",
-//					"/deliveryPartners_by_sorting/{field}/{direction}").hasRole("ADMIN")
-			.requestMatchers(HttpMethod.POST,"/addmovie").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.POST,"/addmovie","/addCinema","/addCinemaHall/{cinemaId}").hasRole("ADMIN")
 			.requestMatchers(HttpMethod.PUT,"/addmovie/{movieId}").hasRole("ADMIN")
 			.anyRequest()
 			.authenticated();

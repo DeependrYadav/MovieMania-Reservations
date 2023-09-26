@@ -30,9 +30,9 @@ public class UserController {
 		return new ResponseEntity<User>(us.addUser(user),HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/signin")
+	@GetMapping("/signIn")
 	public ResponseEntity<String> signin(Authentication auth){
 		User user = us.findByEmail(auth.getName());
-		return new ResponseEntity<String>(user.getName()+"successfully login",HttpStatus.CREATED);
+		return new ResponseEntity<String>(user.getName()+" successfully login",HttpStatus.CREATED);
 	}
 }
