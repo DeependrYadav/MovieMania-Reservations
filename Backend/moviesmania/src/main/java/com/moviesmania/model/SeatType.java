@@ -1,5 +1,5 @@
 package com.moviesmania.model;
 
 public enum SeatType {
-	Regular,Premium,Left_Balconey,Right_Balconey;
+	REGULAR,PREMIMUM,LEFT_BALCONEY,RIGHT_BALCONEY;
 }

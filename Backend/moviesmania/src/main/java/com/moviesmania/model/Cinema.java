@@ -3,6 +3,8 @@ package com.moviesmania.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -30,6 +32,7 @@ public class Cinema {
 	private Address address;
 	
 	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<CinemaHall> cinemaHallList = new ArrayList<>();
 
 	public Cinema(String cinemaName, Address address) {

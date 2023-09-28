@@ -2,16 +2,18 @@ package com.moviesmania.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
-//
-//import jakarta.persistence.CascadeType;
-//import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -39,7 +41,11 @@ public class MovieShow {
 	private Movie movie;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
 	private CinemaHall cinemaHall;
+	
+	@OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
+	private List<Booking> bookings = new ArrayList<>();
 
 	public MovieShow(@NotBlank(message = "Provide show Date.") LocalDate date,
 			@NotBlank(message = "Provide show Starting time.") LocalTime startTime,
