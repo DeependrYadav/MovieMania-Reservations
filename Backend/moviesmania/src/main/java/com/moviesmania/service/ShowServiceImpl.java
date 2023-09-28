@@ -24,6 +24,20 @@ public class ShowServiceImpl implements ShowService{
 	@Autowired
 	private CinemaHallRepository chr;
 	
+	public boolean isCinemaHallBooked(CinemaHall ch,MovieShow show) {
+		return ch.getShow().stream().anyMatch(s-> {
+			if(s.getDate().equals(show.getDate())) {
+				
+				int startTime = s.getStartTime().getHour()-show.getStartTime().getHour();
+				int endTime = s.getStartTime().getHour()-show.getEndTime().getHour();
+				if((startTime < 0 && endTime > 0) || (startTime > 0 && endTime < 0) ) {
+					return true;
+				}
+			}
+			return false;
+		});
+	}
+	
 	@Override
 	public MovieShow addShow(Integer movieId,Integer cinemaHallId,@Valid MovieShow show) {
 		
@@ -33,19 +47,10 @@ public class ShowServiceImpl implements ShowService{
 		
 		if(show == null)throw new MoviesManiaException("Show is null.");
 
-		boolean check = ch.getShow().stream().anyMatch(s-> {
-			if(s.getDate().equals(show.getDate())) {
-				int startTime = s.getStartTime().getHour()-show.getStartTime().getHour();
-				int endTime = s.getStartTime().getHour()-show.getEndTime().getHour();
-				if((startTime < 0 && endTime > 0) || (startTime > 0 && endTime < 0) ) {
-					return true;
-				}
-			}
-			return false;
-		});
+		boolean check = isCinemaHallBooked(ch, show);
 
 		
-		if(check) {			
+		if(!check) {			
 			show.setMovie(movie);
 			show.setCinemaHall(ch);
 			return sr.save(show);
@@ -65,16 +70,7 @@ public class ShowServiceImpl implements ShowService{
 		
 		if(show == null)throw new MoviesManiaException("Show is null.");
 		
-		boolean check = ch.getShow().stream().anyMatch(s-> {
-			if(s.getDate().equals(show.getDate())) {
-				int startTime = s.getStartTime().getHour()-show.getStartTime().getHour();
-				int endTime = s.getStartTime().getHour()-show.getEndTime().getHour();
-				if((startTime < 0 && endTime > 0) || (startTime > 0 && endTime < 0) ) {
-					return true;
-				}
-			}
-			return false;
-		});
+		boolean check = isCinemaHallBooked(ch, movieShow);
 		
 		if(movieId != null)show.setMovie(movie);
 		if(cinemaHallId != null)show.setCinemaHall(ch);
@@ -82,7 +78,8 @@ public class ShowServiceImpl implements ShowService{
 		if(show.getStartTime() != null)movieShow.setStartTime(show.getStartTime());
 		if(show.getEndTime() != null)movieShow.setEndTime(show.getEndTime());
 		
-		return sr.save(movieShow);
+		if(!check)return sr.save(movieShow);
+		else throw new MoviesManiaException("Cinema hall already booked");
 	}
 
 }
