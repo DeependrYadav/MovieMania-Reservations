@@ -9,5 +9,7 @@ public interface UserService {
 	User addUser(@Valid User user);
 
 	User findByEmail(String name);
+
+	String resetPassword(String email, String oldPassword, String newPassword);
 	
 }
