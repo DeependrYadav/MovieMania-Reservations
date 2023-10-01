@@ -1,5 +1,7 @@
 package com.moviesmania.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +82,11 @@ public class ShowServiceImpl implements ShowService{
 		
 		if(!check)return sr.save(movieShow);
 		else throw new MoviesManiaException("Cinema hall already booked");
+	}
+
+	@Override
+	public List<MovieShow> viewAllShow() {
+		return sr.findAll();
 	}
 
 }
