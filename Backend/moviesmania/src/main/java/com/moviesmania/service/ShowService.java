@@ -8,4 +8,6 @@ public interface ShowService {
 
 	MovieShow addShow(Integer movieId,Integer cinemaHallId,@Valid MovieShow show);
 
+	MovieShow mordifyShow(Integer movieId, Integer cinemaHallId, Integer show_id,@Valid MovieShow show);
+
 }

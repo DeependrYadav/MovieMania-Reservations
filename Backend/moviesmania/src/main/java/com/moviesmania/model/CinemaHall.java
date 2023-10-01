@@ -3,8 +3,11 @@ package com.moviesmania.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,12 +37,15 @@ public class CinemaHall {
 	private Integer seatsPerColumn;
 	
 	@OneToMany(mappedBy = "cinemaHall")
+	@JsonManagedReference
 	private List<MovieShow> show = new ArrayList<>();
 	
-	@ElementCollection
+	@JsonIgnore
+	@OneToMany(mappedBy = "cinemaHall",cascade = CascadeType.PERSIST)
 	private List<CinemaHallSeat> hallSeats = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Cinema cinema;
 
 	public CinemaHall(Integer totalSeats, Integer seatsPerRow, Integer seatsPerColumn,
@@ -49,23 +55,5 @@ public class CinemaHall {
 		this.seatsPerRow = seatsPerRow;
 		this.seatsPerColumn = seatsPerColumn;
 		this.cinema = cinema;
-		fillHallSeatsDetails(seatsPerRow,seatsPerColumn);
-	}
-	
-	private void fillHallSeatsDetails(Integer seatsPerRow, Integer seatsPerColumn) {
-		
-		for(int i = 0; i < seatsPerRow; i++) {
-			for(int j = 0; j < seatsPerColumn; j++) {
-				if(i <= seatsPerColumn/3) {
-					hallSeats.add(new CinemaHallSeat("S"+i+j, false,130.00,SeatType.Regular));
-				}else if(i <= seatsPerColumn/3*2) {
-					hallSeats.add(new CinemaHallSeat("S"+i+j, false,150.00,SeatType.Premium));					
-				}else if(i < seatsPerColumn && j < seatsPerColumn/2) {
-					hallSeats.add(new CinemaHallSeat("S"+i+j, false,200.00,SeatType.Left_Balconey));					
-				}else if(i < seatsPerColumn && j > seatsPerColumn/2) {
-					hallSeats.add(new CinemaHallSeat("S"+i+j, false,200.00,SeatType.Right_Balconey));					
-				}
-			}
-		}
 	}
 }

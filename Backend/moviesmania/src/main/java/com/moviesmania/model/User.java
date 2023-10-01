@@ -1,5 +1,11 @@
 package com.moviesmania.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,6 +41,7 @@ public class User {
 	
 	@NotBlank(message = "Please provide the password")
 	@Size(min = 8,message = "Password size more then 8 Character")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	
 	@NotNull
@@ -46,6 +54,9 @@ public class User {
 	
 	@Embedded
 	private Address address;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	List<Booking> bookings = new ArrayList<>();
 
 	public User(@NotBlank(message = "Name can not be null or empty.") String name,
 			@Email(message = "Provide email in valid format.") String email, @NotBlank String phone,
