@@ -1,5 +1,6 @@
 package com.moviesmania.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class ShowController {
 	@GetMapping("/viewShow")
 	public ResponseEntity<List<MovieShow>> viewAllShow(){
 		return new ResponseEntity<List<MovieShow>>(ss.viewAllShow(),HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/viewShow/{date}")
+	public ResponseEntity<List<MovieShow>> viewShowByDate(@PathVariable LocalDate date){
+		return new ResponseEntity<List<MovieShow>>(ss.viewShowByDate(date),HttpStatus.ACCEPTED);
 	}
 }

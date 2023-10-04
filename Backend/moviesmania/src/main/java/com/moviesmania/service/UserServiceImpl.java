@@ -5,7 +5,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.moviesmania.exception.MoviesManiaException;
+import com.moviesmania.model.Booking;
+import com.moviesmania.model.MovieShow;
 import com.moviesmania.model.User;
+import com.moviesmania.repository.ShowRepository;
 import com.moviesmania.repository.UserRepository;
 
 import jakarta.validation.Valid;
@@ -17,6 +20,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository ur;
+	
+	@Autowired
+	private ShowRepository sr;
 	
 	@Override
 	public User addUser(@Valid User user) {
@@ -40,6 +46,15 @@ public class UserServiceImpl implements UserService {
 		}else throw new MoviesManiaException("Invalid password");
 		
 		return "Update successfull";
+	}
+
+	@Override
+	public Booking createBooking(String email, Integer showId) {
+
+		User user = findByEmail(email);
+		MovieShow show = sr.findById(showId).orElseThrow(()-> new MoviesManiaException("Invalid show ID."));
+		
+		return null;
 	}
 
 }

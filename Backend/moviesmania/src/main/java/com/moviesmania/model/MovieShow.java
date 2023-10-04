@@ -38,6 +38,7 @@ public class MovieShow {
 	private LocalTime endTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Movie movie;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

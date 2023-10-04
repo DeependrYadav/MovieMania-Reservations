@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moviesmania.model.Booking;
 import com.moviesmania.model.User;
 import com.moviesmania.service.UserService;
 
@@ -40,5 +41,10 @@ public class UserController {
 	@PostMapping("/user/resetPassword/{email}")
 	public ResponseEntity<String> resetPassword(@PathVariable String email, @PathVariable String oldPassword,@PathVariable String newPassword){
 		return new ResponseEntity<String>(us.resetPassword(email,oldPassword,newPassword),HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/user/ticketBooking/{email}/{showId}")
+	public ResponseEntity<Booking> doBooking(@PathVariable String email,@PathVariable Integer showId){
+		return new ResponseEntity<Booking>(us.createBooking(email,showId),HttpStatus.ACCEPTED);
 	}
 }

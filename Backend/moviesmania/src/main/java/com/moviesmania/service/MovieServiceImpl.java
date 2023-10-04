@@ -39,7 +39,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<Movie> searchMovie(String text) {
-		return mr.findAll().stream().filter(m -> m.getTitle().contains(text)).toList();
+		return mr.findAll().stream().filter(m -> m.getTitle().contains(text) || m.getGenre().contains(text)).toList();
 	}
 
 }
