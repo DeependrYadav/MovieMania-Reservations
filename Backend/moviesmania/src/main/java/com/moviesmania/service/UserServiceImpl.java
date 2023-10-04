@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.moviesmania.exception.MoviesManiaException;
 import com.moviesmania.model.Booking;
+import com.moviesmania.model.CinemaHall;
 import com.moviesmania.model.MovieShow;
 import com.moviesmania.model.User;
 import com.moviesmania.repository.ShowRepository;
@@ -49,11 +50,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Booking createBooking(String email, Integer showId) {
+	public Booking createBooking(String email, Integer showId,String cinemaHallSeatName) {
 
 		User user = findByEmail(email);
 		MovieShow show = sr.findById(showId).orElseThrow(()-> new MoviesManiaException("Invalid show ID."));
 		
+		CinemaHall cinemaHall = show.getCinemaHall();
+		
+//		Booking booking = new Booking()
 		return null;
 	}
 

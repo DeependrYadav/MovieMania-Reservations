@@ -17,4 +17,6 @@ public interface ShowService {
 
 	List<MovieShow> viewShowByDate(LocalDate date);
 
+	List<MovieShow> viewShowByCity(String city);
+
 }

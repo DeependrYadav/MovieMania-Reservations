@@ -43,8 +43,8 @@ public class UserController {
 		return new ResponseEntity<String>(us.resetPassword(email,oldPassword,newPassword),HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/user/ticketBooking/{email}/{showId}")
-	public ResponseEntity<Booking> doBooking(@PathVariable String email,@PathVariable Integer showId){
-		return new ResponseEntity<Booking>(us.createBooking(email,showId),HttpStatus.ACCEPTED);
+	@PostMapping("/user/createBooking/{email}/{showId}/{cinemaHallSeatName}")
+	public ResponseEntity<Booking> createBooking(@PathVariable String email,@PathVariable Integer showId,@PathVariable String cinemaHallSeatName){
+		return new ResponseEntity<Booking>(us.createBooking(email,showId,cinemaHallSeatName),HttpStatus.ACCEPTED);
 	}
 }

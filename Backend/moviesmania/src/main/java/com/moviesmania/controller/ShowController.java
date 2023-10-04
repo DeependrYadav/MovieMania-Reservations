@@ -40,8 +40,13 @@ public class ShowController {
 		return new ResponseEntity<List<MovieShow>>(ss.viewAllShow(),HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/viewShow/{date}")
+	@GetMapping("/viewShowByDate/{date}")
 	public ResponseEntity<List<MovieShow>> viewShowByDate(@PathVariable LocalDate date){
 		return new ResponseEntity<List<MovieShow>>(ss.viewShowByDate(date),HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/viewShowByCity/{city}")
+	public ResponseEntity<List<MovieShow>> viewShowByCity(@PathVariable String city){
+		return new ResponseEntity<List<MovieShow>>(ss.viewShowByCity(city),HttpStatus.ACCEPTED);
 	}
 }

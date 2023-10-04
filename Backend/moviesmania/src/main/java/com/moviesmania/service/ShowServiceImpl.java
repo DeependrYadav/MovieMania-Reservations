@@ -95,4 +95,9 @@ public class ShowServiceImpl implements ShowService{
 		return sr.findAll().stream().filter(s-> s.getDate().equals(date)).toList();
 	}
 
+	@Override
+	public List<MovieShow> viewShowByCity(String city) {
+		return sr.findAll().stream().filter(s-> s.getCinemaHall().getCinema().getAddress().getCity().equals(city)).toList();
+	}
+
 }
