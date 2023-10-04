@@ -32,7 +32,7 @@ public class Payment {
 	private Double amount;
 	
 	@NotNull(message = "Date and time can't be null.")
-	private LocalDateTime paymentTime;
+	private LocalDateTime paymentTime;//YYYY/MM/DD
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)

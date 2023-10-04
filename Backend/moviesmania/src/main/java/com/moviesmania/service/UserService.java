@@ -13,6 +13,6 @@ public interface UserService {
 
 	String resetPassword(String email, String oldPassword, String newPassword);
 
-	Booking createBooking(String email, Integer showId, String cinemaHallSeatName);
+	Booking createBooking(String email, Integer showId, String cinemaHallSeatName, Integer paymentId);
 	
 }
