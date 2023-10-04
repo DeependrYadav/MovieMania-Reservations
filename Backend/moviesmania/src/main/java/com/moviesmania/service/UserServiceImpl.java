@@ -57,25 +57,4 @@ public class UserServiceImpl implements UserService {
 		return "Update successfull";
 	}
 
-	@Override
-	public Booking createBooking(String email, Integer showId,String cinemaHallSeatName,Integer paymentId) {
-
-		User user = findByEmail(email);
-		MovieShow show = sr.findById(showId).orElseThrow(()-> new MoviesManiaException("Invalid show ID."));
-		
-		CinemaHall cinemaHall = show.getCinemaHall();
-		
-		Payment payment = pr.findById(paymentId).orElseThrow(()-> new MoviesManiaException("Invalid payment ID: "+paymentId));
-		
-		long minutes = ChronoUnit.MINUTES.between(payment.getPaymentTime(),LocalDateTime.now());
-
-		if(payment.getUser() == user && minutes > 5) {
-			
-			Booking booking = new Booking(paymentId, LocalDateTime.now(), null, show, payment, user);
-			
-			return null;
-		}else throw new MoviesManiaException("payment Time out.");
-//		Period.between(payment.getPaymentTime(),LocalDateTime.now());
-	}
-
 }
