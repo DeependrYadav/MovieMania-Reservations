@@ -22,6 +22,23 @@ This is a movie ticket booking system designed to manage affiliate cinemas, movi
 
 9. **Seat Reservation**: The system ensures that no two customers can reserve the same seat.
 
+### Use Case Diagram
+
+We have four main Actors in our system:
+
+* **Admin:** Responsible for adding new movies and their shows, canceling any movie or show, blocking/unblocking customers, etc.
+* **FrontDeskOfficer:** Can book/cancel tickets.
+* **Customer:** Can view movie schedules, book, and cancel tickets.
+* **Guest:** All guests can search movies but to book seats they have to become a registered member.
+
+Here are the top use cases of the Movie Ticket Booking System:
+
+* **Search movies:** To search movies by title, genre, language, release date, and city name.
+* **Create/Modify/View booking:** To book a movie show ticket, cancel it or view details about the show.
+* **Make payment for booking:** To pay for the booking.
+* **Assign Seat:** Customers will be shown a seat map to let them select seats for their booking.
+* **Refund payment:** Upon cancellation, customers will be refunded the payment amount as long as the cancellation occurs within the allowed time frame.
+
 ## Contributing
 
 If you would like to contribute to this project, please follow these guidelines:
