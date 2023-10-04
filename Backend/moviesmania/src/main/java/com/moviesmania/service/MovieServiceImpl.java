@@ -1,5 +1,7 @@
 package com.moviesmania.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,11 @@ public class MovieServiceImpl implements MovieService {
 		if(movie.getTitle()!=null)updateMovie.setTitle(movie.getTitle());
 		
 		return updateMovie;
+	}
+
+	@Override
+	public List<Movie> searchMovie(String text) {
+		return mr.findAll().stream().filter(m -> m.getTitle().contains(text) || m.getGenre().contains(text)).toList();
 	}
 
 }

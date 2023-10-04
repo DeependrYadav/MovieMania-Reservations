@@ -1,8 +1,11 @@
 package com.moviesmania.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,5 +33,11 @@ public class MovieController {
 	public ResponseEntity<Movie> mordifyMovie(@PathVariable Integer movieId, @RequestBody Movie movie){
 		return new ResponseEntity<Movie>(ms.mordifyMovie(movieId,movie),HttpStatus.ACCEPTED);
 	}
+	
+	@GetMapping("/searchMovie/{text}")
+	public ResponseEntity<List<Movie>> searchMovie(@PathVariable String text){
+		return new ResponseEntity<List<Movie>>(ms.searchMovie(text),HttpStatus.ACCEPTED);
+	}
+	
 	
 }

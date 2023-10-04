@@ -1,5 +1,6 @@
 package com.moviesmania.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,11 @@ public class ShowServiceImpl implements ShowService{
 	@Override
 	public List<MovieShow> viewAllShow() {
 		return sr.findAll();
+	}
+
+	@Override
+	public List<MovieShow> viewShowByDate(LocalDate date) {
+		return sr.findAll().stream().filter(s-> s.getDate().equals(date)).toList();
 	}
 
 }
