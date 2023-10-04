@@ -43,8 +43,4 @@ public class UserController {
 		return new ResponseEntity<String>(us.resetPassword(email,oldPassword,newPassword),HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/user/ticketBooking/{email}/{showId}")
-	public ResponseEntity<Booking> doBooking(@PathVariable String email,@PathVariable Integer showId){
-		return new ResponseEntity<Booking>(us.createBooking(email,showId),HttpStatus.ACCEPTED);
-	}
 }

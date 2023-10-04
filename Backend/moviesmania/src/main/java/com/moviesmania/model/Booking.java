@@ -27,6 +27,8 @@ public class Booking {
 	
 	private BookingStatus bookingStatus;
 	
+	private String[] seats = new String[numberOfSeats];
+	
 	@ManyToOne
 	private MovieShow show;
 

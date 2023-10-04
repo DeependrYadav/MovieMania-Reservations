@@ -56,7 +56,10 @@ public class User {
 	private Address address;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	List<Booking> bookings = new ArrayList<>();
+	private List<Booking> bookings = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "user")
+	private List<Payment> payments = new ArrayList<>();
 
 	public User(@NotBlank(message = "Name can not be null or empty.") String name,
 			@Email(message = "Provide email in valid format.") String email, @NotBlank String phone,
