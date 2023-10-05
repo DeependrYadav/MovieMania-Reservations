@@ -64,9 +64,9 @@ public class BookingServiceImpl implements BookingService{
 				if(!cinemaHallSeat.isReserved())cinemaHallSeat.setReserved(true);
 				
 				else throw new MoviesManiaException("Seat is already reserved :"+cinemaHallSeat.getSeatName());
-				
-				booking.getSeats()[i] = seatsName;
 			}
+			
+			booking.setSeatsList(seats);
 			
 			payment.setStatus(PaymentStatus.COMPLETED);
 			
