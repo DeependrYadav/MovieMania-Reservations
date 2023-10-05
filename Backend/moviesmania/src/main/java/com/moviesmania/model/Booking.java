@@ -1,8 +1,10 @@
 package com.moviesmania.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +29,8 @@ public class Booking {
 	
 	private BookingStatus bookingStatus;
 	
-	private String[] seats = new String[numberOfSeats];
+	@ElementCollection
+	private List<String> seatsList;
 	
 	@ManyToOne
 	private MovieShow show;
