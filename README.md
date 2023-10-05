@@ -22,6 +22,11 @@ This is a movie ticket booking system designed to manage affiliate cinemas, movi
 
 9. **Seat Reservation**: The system ensures that no two customers can reserve the same seat.
 
+### ER-Diagram
+</br>
+
+![ER-Diagram](./Image/ER-Diagram.png)
+
 ### Use Case Diagram
 
 We have four main Actors in our system:
@@ -51,10 +56,4 @@ If you would like to contribute to this project, please follow these guidelines:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- This project was inspired by the need for a modern movie ticket booking system.
-- Thanks to all contributors who have helped make this project better.
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
