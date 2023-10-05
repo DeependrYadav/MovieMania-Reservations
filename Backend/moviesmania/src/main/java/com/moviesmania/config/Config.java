@@ -53,7 +53,7 @@ public class Config {
 			
 			auth
 			.requestMatchers(HttpMethod.POST,"/user","/user/resetPassword/{email}").permitAll()
-			.requestMatchers("/swagger-ui*/*","/v3/api-docs/*").permitAll() // this is for JWT on Swagger
+			.requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll() // this is for JWT on Swagger
 			
 			.requestMatchers(HttpMethod.GET,"/searchMovie/{text}","/viewShowByDate/{date}","/viewShowByCity/{city}").permitAll()
 			
