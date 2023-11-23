@@ -3,6 +3,8 @@ package com.moviesmania.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -33,12 +35,13 @@ public class Booking {
 	private List<String> seatsList;
 	
 	@ManyToOne
+	@JsonBackReference
 	private MovieShow show;
 
 	@OneToOne
 	private Payment payment;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	private User user;
 
 	public Booking(Integer numberOfSeats, LocalDateTime bookingTime, BookingStatus bookingStatus, MovieShow show,

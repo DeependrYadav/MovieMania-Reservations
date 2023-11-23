@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moviesmania.model.Booking;
+import com.moviesmania.model.Role;
 import com.moviesmania.model.User;
 import com.moviesmania.service.UserService;
 
@@ -29,6 +30,7 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<User> addUser(@RequestBody @Valid User user){
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole(Role.valueOf( user.getRole().toString().toUpperCase() ));
 		return new ResponseEntity<User>(us.addUser(user),HttpStatus.CREATED);
 	}
 	

@@ -2,7 +2,6 @@ package com.moviesmania.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,7 +24,7 @@ public class Payment {
 	private Integer paymentId;
 	
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private User user;
 	
 	@NotNull(message = "Amount can't be null.")
