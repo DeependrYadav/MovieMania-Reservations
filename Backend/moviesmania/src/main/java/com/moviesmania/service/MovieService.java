@@ -11,4 +11,5 @@ public interface MovieService {
 	public Movie mordifyMovie(Integer movieId,Movie movie);
 
 	public List<Movie> searchMovie(String text);
+	public List<Movie> viewAllMovie();
 }

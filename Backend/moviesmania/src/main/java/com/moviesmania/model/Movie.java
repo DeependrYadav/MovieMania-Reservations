@@ -7,6 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,8 +45,8 @@ public class Movie {
 	@NotBlank(message = "Please provide movie Genre.")
 	private String genre;
 	
-	@OneToMany(mappedBy = "movie")
-	@JsonManagedReference
+	@OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<MovieShow> showsList = new ArrayList<>();
 
 	public Movie(@NotBlank(message = "Please provide movie title.") String title,

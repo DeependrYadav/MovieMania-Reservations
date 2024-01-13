@@ -1,17 +1,12 @@
 package com.moviesmania.service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.moviesmania.exception.MoviesManiaException;
-import com.moviesmania.model.Booking;
-import com.moviesmania.model.CinemaHall;
-import com.moviesmania.model.MovieShow;
-import com.moviesmania.model.Payment;
 import com.moviesmania.model.User;
 import com.moviesmania.repository.PaymentRepository;
 import com.moviesmania.repository.ShowRepository;
@@ -27,11 +22,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository ur;
 	
-	@Autowired
-	private ShowRepository sr;
-	
-	@Autowired
-	private PaymentRepository pr;
 	
 	@Override
 	public User addUser(@Valid User user) {
@@ -55,6 +45,11 @@ public class UserServiceImpl implements UserService {
 		}else throw new MoviesManiaException("Invalid password");
 		
 		return "Update successfull";
+	}
+
+	@Override
+	public List<User> viewAllUser() {
+		return ur.findAll();
 	}
 
 }

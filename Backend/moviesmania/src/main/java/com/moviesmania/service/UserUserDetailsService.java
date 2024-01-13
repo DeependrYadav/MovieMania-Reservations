@@ -23,7 +23,6 @@ public class UserUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
 		User user = ar.findByEmail(username).orElseThrow(() -> new MoviesManiaException("Invalid email"));
 		
 		List<GrantedAuthority> authorities= new ArrayList<>();

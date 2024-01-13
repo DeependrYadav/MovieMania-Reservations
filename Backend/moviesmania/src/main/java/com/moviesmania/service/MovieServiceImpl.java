@@ -42,4 +42,9 @@ public class MovieServiceImpl implements MovieService {
 		return mr.findAll().stream().filter(m -> m.getTitle().contains(text) || m.getGenre().contains(text)).toList();
 	}
 
+	@Override
+	public List<Movie> viewAllMovie() {
+		return mr.findAll();
+	}
+
 }

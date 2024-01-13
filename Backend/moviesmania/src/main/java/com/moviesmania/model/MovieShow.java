@@ -39,11 +39,11 @@ public class MovieShow {
 	private LocalTime endTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonBackReference
+//	@JsonBackReference("movie-reference")
 	private Movie movie;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonBackReference("cinema-hall-reference")
 	private CinemaHall cinemaHall;
 	
 	@OneToMany(mappedBy = "show",cascade = CascadeType.ALL)

@@ -74,4 +74,16 @@ public class BookingServiceImpl implements BookingService{
 			
 		}else throw new MoviesManiaException("payment Time out.");
 	}
+
+	@Override
+	public List<Booking> getAllBooking() {
+		
+		return br.findAll();
+	}
+
+	@Override
+	public Booking getBookingById(Integer bookingId) {
+		
+		return br.findById(bookingId).orElseThrow(()-> new MoviesManiaException("Invalid booking Id"));
+	}
 }

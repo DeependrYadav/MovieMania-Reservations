@@ -1,5 +1,7 @@
 package com.moviesmania.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,11 @@ public class PaymentServiceImpl implements PaymentService {
 		payment.setStatus(PaymentStatus.PENDING);
 		payment.setUser(user);
 		return pr.save(payment);
+	}
+
+	@Override
+	public List<Payment> viewAllPayment() {
+		return pr.findAll();
 	}
 
 }

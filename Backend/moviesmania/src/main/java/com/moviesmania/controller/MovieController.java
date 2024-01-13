@@ -39,5 +39,10 @@ public class MovieController {
 		return new ResponseEntity<List<Movie>>(ms.searchMovie(text),HttpStatus.ACCEPTED);
 	}
 	
+	@GetMapping("/viewAllMovie")
+	public ResponseEntity<List<Movie>> viewAllMovie(){
+		return new ResponseEntity<List<Movie>>(ms.viewAllMovie(),HttpStatus.ACCEPTED);
+	}
+	
 	
 }
