@@ -23,13 +23,13 @@ public class MovieController {
 	@Autowired
 	private MovieService ms;
 	
-	@PostMapping("/addmovie")
+	@PostMapping("/addMovie")
 	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie){
 		System.out.println("Addmovie");
 		return new ResponseEntity<Movie>(ms.addMovie(movie), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/addmovie/{movieId}")
+	@PutMapping("/addMovie/{movieId}")
 	public ResponseEntity<Movie> mordifyMovie(@PathVariable Integer movieId, @RequestBody Movie movie){
 		return new ResponseEntity<Movie>(ms.mordifyMovie(movieId,movie),HttpStatus.ACCEPTED);
 	}

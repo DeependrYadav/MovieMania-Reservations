@@ -35,13 +35,14 @@ public class Booking {
 	private List<String> seatsList;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value = "Booking-Reference")
 	private MovieShow show;
 
 	@OneToOne
 	private Payment payment;
 	
-	@ManyToOne//(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference(value = "User-Reference")
 	private User user;
 
 	public Booking(Integer numberOfSeats, LocalDateTime bookingTime, BookingStatus bookingStatus, MovieShow show,

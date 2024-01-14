@@ -46,7 +46,7 @@ public class Movie {
 	private String genre;
 	
 	@OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonManagedReference(value = "movie-reference")
 	private List<MovieShow> showsList = new ArrayList<>();
 
 	public Movie(@NotBlank(message = "Please provide movie title.") String title,

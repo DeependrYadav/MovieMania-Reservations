@@ -39,15 +39,15 @@ public class MovieShow {
 	private LocalTime endTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-//	@JsonBackReference("movie-reference")
+	@JsonBackReference(value = "movie-reference")
 	private Movie movie;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonBackReference("cinema-hall-reference")
+	@JsonBackReference(value = "cinema-hall-reference")
 	private CinemaHall cinemaHall;
 	
 	@OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@JsonManagedReference(value = "Booking-Reference")
 	private List<Booking> bookings = new ArrayList<>();
 
 	public MovieShow(@NotBlank(message = "Provide show Date.") LocalDate date,

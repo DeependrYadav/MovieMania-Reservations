@@ -37,7 +37,7 @@ public class CinemaHall {
 	private Integer seatsPerColumn;
 	
 	@OneToMany(mappedBy = "cinemaHall")
-	@JsonManagedReference
+	@JsonManagedReference(value = "cinema-hall-reference")
 	private List<MovieShow> show = new ArrayList<>();
 	
 	@JsonIgnore

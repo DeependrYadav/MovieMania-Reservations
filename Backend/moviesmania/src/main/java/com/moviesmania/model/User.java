@@ -1,7 +1,12 @@
 package com.moviesmania.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +14,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -52,8 +58,9 @@ public class User {
 	@Embedded
 	private Address address;
 	
-//	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-//	private List<Booking> bookings = new ArrayList<>();
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@JsonManagedReference(value = "User-Reference")
+	private List<Booking> bookings = new ArrayList<>();
 	
 
 	public User(@NotBlank(message = "Name can not be null or empty.") String name,

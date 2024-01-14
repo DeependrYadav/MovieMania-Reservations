@@ -60,9 +60,9 @@ public class Config {
 			.requestMatchers(HttpMethod.POST,"/user/createBooking/{email}/{showId}/{cinemaHallSeatName}"
 					,"/pay/{email}/{amount}").hasAnyRole("FRONTDESKOFFIICE","USER")
 			
-			.requestMatchers(HttpMethod.POST,"/addmovie","/addCinema","/addCinemaHall/{cinemaId}",
+			.requestMatchers(HttpMethod.POST,"/addMovie","/addCinema","/addCinemaHall/{cinemaId}",
 					"/addShow/{movieId}/{cinemaHallId}").hasRole("ADMIN")
-			.requestMatchers(HttpMethod.PUT,"/addmovie/{movieId}").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.PUT,"/addMovie/{movieId}").hasRole("ADMIN")
 			.requestMatchers(HttpMethod.GET,"/user/getAllBooking","/viewAllPayments","/viewAllUser",
 					"/user/getBookingById/{bookingId}").hasRole("ADMIN")
 			.anyRequest()
